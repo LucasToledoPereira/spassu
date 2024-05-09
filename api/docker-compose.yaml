@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: spassu_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spassu-api:nx-dev
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    environment:
+      - DB_HOST=postgres
+    env_file:
+      - .env
+    networks:
+      - backend
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass123
+      POSTGRES_DB: spassu
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
