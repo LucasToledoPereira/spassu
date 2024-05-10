@@ -1,9 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Observable, concatMap, map, tap } from 'rxjs';
+
 import { Author } from './models/author.model';
 import { IAuthorsRepository } from './interfaces/authors-repository.interface';
 import { AuthorCreateCommand } from './commands/author-create.command';
 import { AuthorUpdateCommand } from './commands/author-update.command';
+import { AuthorError } from '../../application/enums/error-codes';
 
 @Injectable()
 export class AuthorsService {
@@ -37,15 +43,19 @@ export class AuthorsService {
     );
   }
 
+  readAuthor(id: number): Observable<Author> {
+    return this._repository.find(id).pipe(tap(this._checkIfAuthorExists));
+  }
+
   private _checkIfAuthorExists(author: Author) {
     if (!author) {
-      throw new Error('Author not found');
+      throw new NotFoundException(AuthorError.NOT_FOUND);
     }
   }
 
   private _checkIfAuthorHasBooks(author: Author) {
     if (author.books.length > 0) {
-      throw new Error('The author has books registered');
+      throw new BadRequestException(AuthorError.HAS_BOOKS);
     }
   }
 }

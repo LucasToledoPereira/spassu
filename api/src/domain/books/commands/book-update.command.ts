@@ -7,7 +7,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { Currency } from '../../../application/constants/currencies';
+import { Currency } from '../../../application/enums/currencies';
 
 export class BookUpdateCommand {
   @ApiProperty({

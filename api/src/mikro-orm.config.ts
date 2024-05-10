@@ -1,12 +1,5 @@
 import { defineConfig } from '@mikro-orm/postgresql';
 import { Migrator } from '@mikro-orm/migrations';
-import * as tsconfigPath from 'tsconfig-paths';
-import dotenv from 'dotenv';
-
-if (process.env.NODE_ENV !== 'production') {
-  tsconfigPath.register();
-  dotenv.config();
-}
 
 export default defineConfig({
   extensions: [Migrator],

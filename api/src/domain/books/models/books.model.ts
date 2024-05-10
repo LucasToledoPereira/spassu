@@ -5,7 +5,7 @@ import {
   PrimaryKey,
   Property,
 } from '@mikro-orm/core';
-import { Currency } from '../../../application/constants/currencies';
+import { Currency } from '../../../application/enums/currencies';
 import { Subject } from '../../subjects/models/subject.model';
 import { Author } from '../../authors/models/author.model';
 

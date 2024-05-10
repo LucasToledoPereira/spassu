@@ -1,10 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Observable, concatMap, map, tap } from 'rxjs';
 
 import { Subject } from './models/subject.model';
 import { SubjectCreateCommand } from './commands/subject-create.command';
 import { SubjectUpdateCommand } from './commands/subject-update.command';
 import { ISubjectsRepository } from './interfaces/subjects-repository.interface';
+import { SubjectError } from '../../application/enums/error-codes';
 
 @Injectable()
 export class SubjectsService {
@@ -31,7 +36,7 @@ export class SubjectsService {
     );
   }
 
-  deleteSubjct(id: number): Observable<Subject> {
+  deleteSubject(id: number): Observable<Subject> {
     return this._repository.find(id).pipe(
       tap(this._checkIfSubjectExists),
       tap(this._checkIfSubjectIsInUse),
@@ -41,15 +46,19 @@ export class SubjectsService {
     );
   }
 
+  readSubject(id: number): Observable<Subject> {
+    return this._repository.find(id).pipe(tap(this._checkIfSubjectExists));
+  }
+
   private _checkIfSubjectExists(subject: Subject) {
     if (!subject) {
-      throw new Error('Subject not found');
+      throw new NotFoundException(SubjectError.NOT_FOUND);
     }
   }
 
   private _checkIfSubjectIsInUse(subject: Subject) {
     if (subject.books.length > 0) {
-      throw new Error('The author is in use');
+      throw new BadRequestException(SubjectError.IS_IN_USE);
     }
   }
 }

@@ -45,7 +45,13 @@ export class BooksRepository extends IBooksRepository {
   }
 
   find(id: number): Observable<Book> {
-    return from(this._bookRepo.findOne(id));
+    return from(
+      this._bookRepo.findOne(id, {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore because authors and subjects have a many to many relationship with books
+        populate: ['authors', 'subjects'],
+      }),
+    );
   }
 
   update(book: Book, command: BookUpdateCommand): Observable<Book> {
