@@ -1,0 +1,10 @@
+.ui-card {
+    box-shadow: 0px 0px 10px 0px rgb(var(--card-box-shadow, 8, 40, 150));
+    border-radius: 15px;
+    min-width: 150px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}

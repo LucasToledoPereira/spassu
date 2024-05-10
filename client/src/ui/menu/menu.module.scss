@@ -1,0 +1,24 @@
+.ui-menu {
+    width: var(--menu-width, 200px);
+    background-color: rgb(var(--menu-background,  255, 255, 255));
+    border: 1px solid rgb(var(--menu-border-color, 1, 12, 50));
+    min-height: 100%;
+    border-radius: var(--menu-border-radius, 15px);
+    flex-direction: column;
+    row-gap: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    &__item {
+        border: 1px solid transparent;
+        cursor: pointer;
+        padding: 8px;
+        &:hover, &--active {
+            border-color: rgb(var(--menu-item-border-color-hover, 8, 40, 150));
+            color: rgb(var(--menu-item-color-hover, 0, 0, 0));
+            border-radius: var(--menu-border-radius, 15px);     
+        }
+    }
+}
