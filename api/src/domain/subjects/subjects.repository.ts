@@ -25,7 +25,7 @@ export class SubjectsRepository extends ISubjectsRepository {
   }
 
   search(): Observable<Subject[]> {
-    return from(this._subjectRepo.findAll());
+    return from(this._subjectRepo.findAll({ orderBy: { id: 'asc' } }));
   }
 
   find(id: number): Observable<Subject> {

@@ -27,7 +27,7 @@ export class ExceptionHandler implements ExceptionFilter {
     const { httpAdapter } = this._httpAdapterHost;
     const responseBody: HttpError = {
       statusCode: httpStatus,
-      code: exception.message as ErrorCode,
+      message: exception.message as ErrorCode,
       timestamp: new Date().toISOString(),
       path: httpAdapter.getRequestUrl(ctx.getRequest()),
     };

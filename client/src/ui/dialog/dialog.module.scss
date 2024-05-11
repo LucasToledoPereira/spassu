@@ -1,0 +1,33 @@
+@use '../../styles/breakpoints.scss';
+
+.ui-dialog {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9;
+  background-color: rgba(235, 235, 235, 0.7);
+
+  &__container {
+    background-color: var(--ui-dialog-background, #fff);
+    box-shadow: var(--ui-dialog-box-shadow, 0px 3px 6px #00000029);
+    border-radius: var(--ui-dialog-border-radius, 15px);
+    padding: var(--ui-dialog-padding, 2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    min-width: 50vw;
+    max-width: 80vw;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    @include breakpoints.media-breakpoint-down(md) {
+      max-width: 95vw;
+    }
+  }
+}

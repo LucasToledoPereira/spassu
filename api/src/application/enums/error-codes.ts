@@ -1,20 +1,20 @@
 export enum AuthorError {
-  ALREADY_EXISTS = 'author.already.exists',
-  NOT_FOUND = 'author.not.found',
-  HAS_BOOKS = 'author.has.books',
+  ALREADY_EXISTS = 'O autor já existe',
+  NOT_FOUND = 'Autor não encontrado',
+  HAS_BOOKS = 'O autor possuí livros atribuídos a ele',
 }
 
 export enum BookError {
-  NOT_FOUND = 'book.not.found',
+  NOT_FOUND = 'O livro não foi encontrado',
 }
 
 export enum SubjectError {
-  NOT_FOUND = 'subject.not.found',
-  IS_IN_USE = 'subject.in.use',
+  NOT_FOUND = 'O assunto não foi encontrado',
+  IS_IN_USE = 'O assunto está em uso',
 }
 
 export enum CommonError {
-  UNAUTHORIZED = 'unauthorized',
+  UNAUTHORIZED = 'Não autorizado',
 }
 
 export type ErrorCode = AuthorError | BookError | SubjectError | CommonError;

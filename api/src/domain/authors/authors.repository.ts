@@ -26,7 +26,7 @@ export class AuthorsRepository extends IAuthorsRepository {
   }
 
   search(): Observable<Author[]> {
-    return from(this._authorRepo.findAll());
+    return from(this._authorRepo.findAll({ orderBy: { id: 'asc' } }));
   }
 
   find(id: number): Observable<Author> {

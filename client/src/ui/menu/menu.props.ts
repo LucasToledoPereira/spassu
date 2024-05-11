@@ -6,4 +6,5 @@ export interface UIMenuItemProps {
     text: string;
     path: string;
     match?: boolean;
+    closeMenu?: () => void;
 }

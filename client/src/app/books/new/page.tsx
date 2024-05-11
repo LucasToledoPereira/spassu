@@ -22,11 +22,10 @@ type BooksInputs = {
   subjects: number[];
 }
 
-export default function NewAuthor() {
+export default function NewBook() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<BooksInputs>()
   const { post, success } = usePost(`${process.env.NEXT_PUBLIC_API}books`);
@@ -86,7 +85,7 @@ export default function NewAuthor() {
             </div>
             <div className="flex flex-col">
                 <span className="text-gray-700 pb-2">Valor</span>
-                <input type="number" className={errors.value ? 'border-red-600 rounded-full' : 'rounded-full'} {...register("value")} />
+                <input min={0} type="number" className={errors.value ? 'border-red-600 rounded-full' : 'rounded-full'} {...register("value")} />
             </div>
             <div className="flex flex-col">
                 <span className="text-gray-700 pb-2">Autores</span>

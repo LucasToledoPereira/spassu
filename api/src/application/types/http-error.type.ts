@@ -12,7 +12,7 @@ export class HttpError {
     enumName: 'ErrorCode',
     example: AuthorError.NOT_FOUND,
   })
-  code: ErrorCode;
+  message: ErrorCode;
 
   @ApiProperty({
     example: '2024-05-10T12:57:59.129Z',

@@ -10,13 +10,14 @@ import { useGet } from "@/hooks";
 import { BaseResponse } from "@/models/base-response";
 import { AuthorsResponse } from "@/models/authors-response";
 import { usePut } from "@/hooks/use-put.hook";
+import { LoaderBackdrop } from "@ui/loader";
 
 type AuthorInputs = {
   name: string;
 }
 
 export default function EditAuthor({ params: { id } }: any) {
-  const { put, success } = usePut(`${process.env.NEXT_PUBLIC_API}authors/${id}`);
+  const { put, success, loading, error } = usePut(`${process.env.NEXT_PUBLIC_API}authors/${id}`);
   const route = useRouter();
   const onSubmit: SubmitHandler<AuthorInputs> = (data) => put(data);
   const {response} = useGet<BaseResponse<AuthorsResponse>>(`${process.env.NEXT_PUBLIC_API}authors/${id}`, {eager: true, cache: false})
@@ -38,8 +39,15 @@ export default function EditAuthor({ params: { id } }: any) {
     }
   }, [success]);
 
+  useEffect(() => {
+    if (error) {
+        toast.error(error.message || 'Houve um erro ao salvar as alteracões');
+    }
+  }, [error]);
+
   return (
-    <Card className="bg-white flex flex-col p-8 w-full gap-6">
+    <Card className="bg-white flex flex-col p-8 w-full gap-6 relative">
+        {loading ? <LoaderBackdrop text="Salvando ..."/> : null}
         <ContentHeader label="Editar autor"/>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-full">
             <div className="flex flex-col">

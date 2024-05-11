@@ -1,0 +1,18 @@
+.ui-dropmenu {
+  --ui-popover-background-color: var(--ui-color-white, #fff);
+  --ui-popover-color: var(--ui-color-dark, #000);
+
+  &__item {
+    border-radius: var(--ui-border-radius, 15px);
+    display: flex;
+    cursor: pointer;
+    &:hover:not(.ui-dropmenu__item--disabled) {
+      background-color: var(--ui-color-secondary, rgb(158, 176, 237));
+    }
+
+    &--disabled {
+      cursor: unset;
+      color: var(--ui-color-medium);
+    }
+  }
+}

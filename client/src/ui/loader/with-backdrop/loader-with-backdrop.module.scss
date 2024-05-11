@@ -1,0 +1,16 @@
+.ui-loader-backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: rgba(235, 235, 235, 0.7);
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ui-loader-color, #000000);
+  z-index: 999;
+}
